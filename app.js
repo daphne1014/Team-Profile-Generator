@@ -1,3 +1,7 @@
+const fs = require('fs');
+const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateProfile.js');
+
 //TODO: Create an array of questions for user input
 
 const promptManager = () => {
@@ -233,4 +237,22 @@ const writeToFile = (fileName, data) => {
 // TODO: Create a function to initialize app
 const init = () => {
     promptManager()
+    .then(promptMain)
+    .then(data =>{
+        return generateProfile(data);
+    })
+    .then(fileContent =>{
+        return writeToFile('./dist/index.html', fileContent)
+      })
+      .then(writeFileResponse => {
+        console.log(writeFileResponse);
+      })
+      .catch(err => {
+        console.log(err);
+      })
 };
+
+// Function call to initialize app
+init();
+
+module.exports = { writeToFile };
