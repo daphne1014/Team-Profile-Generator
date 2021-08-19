@@ -4,11 +4,13 @@ const fs = require("fs");
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generateTeam = require('./src/page-template');
 
 
 const team = []
 
 const promptManager = () => {
+    
     console.log("Let's create the team");
     inquirer.prompt([
         {
@@ -75,6 +77,7 @@ const promptManager = () => {
 };
 
 const promptEngineer = () => {
+    
     inquirer.prompt([
         {
             type: 'input',
@@ -223,31 +226,30 @@ const promptMain = () => {
         })
 };
 
-
-// TODO: Create a function to initialize app
-// const init = () => {
-//     promptManager()
-//         .then(promptMain)
-//         .then(data => {
-//             return generateProfile(data);
-//         })
-//         .then(fileContent => {
-//             return writeToFile('./dist/index.html', fileContent)
-//         })
-//         .then(writeFileResponse => {
-//             console.log(writeFileResponse);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         })
-// };
+// TODO: Create a function to write README file
+// function writeToFile(fileName, data) {
+//     return new Promise((resolve, reject) => {
+//       fs.writeFile(fileName, data, err => {
+//         if (err) {
+//           reject(err);
+//           return;
+//         }
+  
+//         resolve({
+//           ok: true,
+//           message: 'HTML File created!'
+//         });
+//       });
+//     });
+//   };
+  
 
 // Function call to initialize app
 
 function init() {
     promptManager()
     // .then(data => {
-    //     return generateProfile(data);
+    //     return generateTeam(data);
     // })
     // .then(fileContent => {
     //     return writeToFile('./dist/index.html', fileContent)
