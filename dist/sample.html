@@ -8,16 +8,70 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../src/style.css">
     <title>Team Profile</title>
 </head>
 
 <body>
-    <header>My Team</header>
-    <div class="container">
-       
-    </div>
 
+    <header class="px-4 py-5 my-5 text-center danger">
+        <h1 class="display-5 fw-bold">My Team</h1>
+    </header>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100" id="manager" style="width: 18rem;">
+                    <div class="card-body title">
+                        <h2 class="card-title name">${employee.getName()}</h2>
+                        <h3 class="card-title position"><i class="fas fa-mug-hot"></i>${employee.getRole()}</h3>
+                    </div>
+                    <div class="card-body content">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">ID: ${employee.getId()}</li>
+                            <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">
+                                    ${employee.getEmail}</a>
+                            </li>
+                            <li class="list-group-item">Office Number: ${employee.officeNumber()}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" id="engineer" style="width: 18rem;">
+                    <div class="card-body title">
+                        <h2 class="card-title name">${employee.getName()}</h2>
+                        <h3 class="card-title position"><i class="fas fa-glasses"></i>${employee.getRole()}</h3>
+                    </div>
+                    <div class="card-body content">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">ID: ${employee.getId()}</li>
+                            <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">
+                                    ${employee.getEmail}</a>
+                            </li>
+                            <li class="list-group-item">Github: ${employee.getGithhub()}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100" id="intern" style="width: 18rem;">
+                    <div class="card-body title">
+                        <h2 class="card-title name">${employee.getName()}</h2>
+                        <h3 class="card-title position"><i class="fas fa-user-graduate"></i>${employee.getRole()}</h3>
+                    </div>
+                    <div class="card-body content">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">ID: ${employee.getId()}</li>
+                            <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">
+                                    ${employee.getEmail}</a>
+                            </li>
+                            <li class="list-group-item">School: ${employee.getSchool()}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>

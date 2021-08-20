@@ -1,67 +1,71 @@
 const generateTeam = team => {
-    const generateManager = manager => {
-        return `
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+    team.forEach(employee => {
+        switch (employee.getRole()) {
+            case 'Manager':
+                `<div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100" id="manager" style="width: 18rem;">
-                    <div class="card-body">
-                        <h2 class="card-title">${manager.getName()}</h2>
-                        <h3 class="card-title"><i class="fas fa-mug-hot"></i>${manager.getRole()}</h3>
+                    <div class="card-body title">
+                        <h2 class="card-title name">${employee.getName()}</h2>
+                        <h3 class="card-title position"><i class="fas fa-mug-hot"></i>${employee.getRole()}</h3>
                     </div>
+                    <div class="card-body content">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${manager.getId()}</li>
-                        <li class="list-group-item">Email: <href="mailto:${manager.getEmail()}">${manager.getEmail}</a>
+                        <li class="list-group-item">ID: ${employee.getId()}</li>
+                        <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">${employee.getEmail}</a>
                         </li>
-                        <li class="list-group-item">Office Number: ${manager.officeNumber()}</li>
+                        <li class="list-group-item">Office Number: ${employee.officeNumber()}</li>
                     </ul>
-                </div>
-            </div>`
-    };
-    const generateEngineer = engineer => {
-        engineer
-        .filter(({main})=>main)
-        return `
-        <div class="col">
-                <div class="card h-100" id="engineer" style="width: 18rem;">
-                    <div class="card-body">
-                        <h2 class="card-title">${engineer.getName()}</h2>
-                        <h3 class="card-title"><i class="fas fa-glasses"></i>${engineer.getRole()}</h3>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${engineer.getId()}</li>
-                        <li class="list-group-item">Email: <href="mailto:${engineer.getEmail()}">
-                                ${engineer.getEmail}</a>
-                        </li>
-                        <li class="list-group-item">Github: ${engineer.getGithhub()}</li>
-                    </ul>
                 </div>
-            </div>`
-    };
-    const generateIntern = intern => {
-        return `
-        <div class="col">
-                <div class="card h-100" id="intern" style="width: 18rem;">
-                    <div class="card-body">
-                        <h2 class="card-title">${intern.getName()}</h2>
-                        <h3 class="card-title"><i class="fas fa-user-graduate"></i>${intern.getRole()}</h3>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${intern.getId()}</li>
-                        <li class="list-group-item">Email: <href="mailto:${intern.getEmail()}">${intern.getEmail}</a>
-                        </li>
-                        <li class="list-group-item">School: ${intern.getSchool()}</li>
-                    </ul>
-                </div>
-            </div>`
-    };
+            </div>`;
+                break;
 
+            case 'Engineer':
+                `<div class="col">
+                <div class="card h-100" id="engineer" style="width: 18rem;">
+                    <div class="card-body title">
+                        <h2 class="card-title name">${employee.getName()}</h2>
+                        <h3 class="card-title position"><i class="fas fa-glasses"></i>${employee.getRole()}</h3>
+                    </div>
+                    <div class="card-body content">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${employee.getId()}</li>
+                        <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">
+                                ${employee.getEmail}</a>
+                        </li>
+                        <li class="list-group-item">Github: ${employee.getGithhub()}</li>
+                    </ul>
+                    </div>
+                </div>
+            </div>`;
+                break;
+
+            case 'Intern':
+                `<div class="col">
+                <div class="card h-100" id="intern" style="width: 18rem;">
+                    <div class="card-body title">
+                        <h2 class="card-title name">${employee.getName()}</h2>
+                        <h3 class="card-title position"><i class="fas fa-user-graduate"></i>${employee.getRole()}</h3>
+                    </div>
+                    <div class="card-body content">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${employee.getId()}</li>
+                        <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">${employee.getEmail}</a>
+                        </li>
+                        <li class="list-group-item">School: ${employee.getSchool()}</li>
+                    </ul>
+                    </div>
+                </div>
+            </div>`;
+                break;
+        }
+    })
 };
 
-module.exports = tempateData => {
-    const { manager, engineer, intern } = tempateData;
 
-    return `
-    <!DOCTYPE html>
+module.exports = team => {
+    `<!DOCTYPE html>
     <html lang="en">
 
         <head>
@@ -76,14 +80,15 @@ module.exports = tempateData => {
         </head>
 
         <body>
-            <header>My Team</header>
+        <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">My Team</h1>
+         </div>
             <div class="container">
-                ${generateTeam}
+                ${generateTeam(team)}
             </div>
-
         </body>
 
     </html>
-    `
-
+    `;
 };
+
