@@ -20,8 +20,5 @@ test("gets intern's school", () => {
 test('gets intern role as object', () => {
     const intern = new Intern('Daphne', 293923891, 'daphnesong1014@gmail.com', 123345);
 
-    expect(intern.getRole()).toHaveProperty('name');
-    expect(intern.getRole()).toHaveProperty('id');
-    expect(intern.getRole()).toHaveProperty('email');
-    expect(intern.getRole()).toHaveProperty('school');
+    expect(intern.getRole()).toBe("Intern");
 })

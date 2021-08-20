@@ -20,8 +20,5 @@ test("gets engineer's github id", () => {
 test('gets engineer role as object', () => {
     const engineer = new Engineer('Daphne', 293923891, 'daphnesong1014@gmail.com', 'daphne1014');
 
-    expect(engineer.getRole()).toHaveProperty('name');
-    expect(engineer.getRole()).toHaveProperty('id');
-    expect(engineer.getRole()).toHaveProperty('email');
-    expect(engineer.getRole()).toHaveProperty('github');
+    expect(engineer.getRole()).toBe("Engineer");
 })
