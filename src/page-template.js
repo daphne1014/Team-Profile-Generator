@@ -1,20 +1,22 @@
 const generateTeam = team => {
+    var a = '';
+    
     team.forEach(employee => {
         switch (employee.getRole()) {
             case 'Manager':
-                `<div class="row row-cols-1 row-cols-md-3 g-4">
+                a = `<div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100" id="manager" style="width: 18rem;">
                     <div class="card-body title">
                         <h2 class="card-title name">${employee.getName()}</h2>
-                        <h3 class="card-title position"><i class="fas fa-mug-hot"></i>${employee.getRole()}</h3>
+                        <h3 class="card-title position"><i class="fas fa-mug-hot"> </i>${employee.getRole()}</h3>
                     </div>
                     <div class="card-body content">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${employee.getId()}</li>
                         <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">${employee.getEmail}</a>
                         </li>
-                        <li class="list-group-item">Office Number: ${employee.officeNumber()}</li>
+                        <li class="list-group-item">Office Number: ${employee.getOfficeNumber()}</li>
                     </ul>
                     </div>
                 </div>
@@ -22,11 +24,11 @@ const generateTeam = team => {
                 break;
 
             case 'Engineer':
-                `<div class="col">
+                a = `<div class="col">
                 <div class="card h-100" id="engineer" style="width: 18rem;">
                     <div class="card-body title">
                         <h2 class="card-title name">${employee.getName()}</h2>
-                        <h3 class="card-title position"><i class="fas fa-glasses"></i>${employee.getRole()}</h3>
+                        <h3 class="card-title position"><i class="fas fa-glasses"> </i>${employee.getRole()}</h3>
                     </div>
                     <div class="card-body content">
                     <ul class="list-group list-group-flush">
@@ -34,7 +36,7 @@ const generateTeam = team => {
                         <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">
                                 ${employee.getEmail}</a>
                         </li>
-                        <li class="list-group-item">Github: ${employee.getGithhub()}</li>
+                        <li class="list-group-item">Github: ${employee.getGithub()}</li>
                     </ul>
                     </div>
                 </div>
@@ -42,11 +44,11 @@ const generateTeam = team => {
                 break;
 
             case 'Intern':
-                `<div class="col">
+                a = `<div class="col">
                 <div class="card h-100" id="intern" style="width: 18rem;">
                     <div class="card-body title">
                         <h2 class="card-title name">${employee.getName()}</h2>
-                        <h3 class="card-title position"><i class="fas fa-user-graduate"></i>${employee.getRole()}</h3>
+                        <h3 class="card-title position"><i class="fas fa-user-graduate"> </i>${employee.getRole()}</h3>
                     </div>
                     <div class="card-body content">
                     <ul class="list-group list-group-flush">
@@ -61,11 +63,13 @@ const generateTeam = team => {
                 break;
         }
     })
+
+    return a;
 };
 
 
-module.exports = team => {
-    `<!DOCTYPE html>
+function generateHtml(team) {
+    return `<!DOCTYPE html>
     <html lang="en">
 
         <head>
@@ -91,4 +95,6 @@ module.exports = team => {
     </html>
     `;
 };
+
+module.exports=generateHtml;
 

@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
+const path = require("path");
+const render=require('./src/page-template.js');
 
 const generateTeam = require('./src/page-template')
 
@@ -7,6 +9,8 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+// const OUTPUT_DIR = path.resolve(__dirname,"output");
+// const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 
 const team = [];
@@ -223,7 +227,7 @@ const promptMain = () => {
             } else if (answers.main === 'add an intern') {
                 return promptIntern();
             } else {
-                return team;
+                return createTeam(team);
             }
         })
 };
@@ -262,13 +266,35 @@ const copyFile = () => {
 };
 
 
-promptManager()
-    .then(team => {
-        return generateTeam(team);
-    })
-    .then(pageHTML => {
-        return writeFile(pageHTML);
-    })
+// function createTeam() {
+//     // generateTeam(team)
+//     if (!fs.existsSync(OUTPUT_DIR)) {
+//         fs.mkdirSync(OUTPUT_DIR)
+//       }
+//       console.log(team);
+//       fs.writeFileSync(outputPath, render(JSON.stringify(team)), "utf-8");
+//     // writeFile(pageHTML)
+//     // .then(pageHTML => {
+//     //     writeFile(pageHTML);
+//     // })
+//     // .then(writeFileResponse => {
+//     //     console.log(writeFileResponse);
+//     //     copyFile();
+//     // })
+//     // .then(copyFileResponse => {
+//     //     console.log(copyFileResponse);
+//     // })
+//     // .catch(err => {
+//     //     console.log(err);
+//     // })
+// };
+createTeam = (team) => {
+    //console.log(team);
+    //return console.log(generateTeam(team))
+    
+    var pageHTML = generateTeam(team);
+    
+    writeFile(pageHTML)
     .then(writeFileResponse => {
         console.log(writeFileResponse);
         return copyFile();
@@ -279,3 +305,20 @@ promptManager()
     .catch(err => {
         console.log(err);
     });
+
+    // .then(pageHTML => {
+    //  return writeFile(pageHTML);
+    // })
+    // .then(writeFileResponse => {
+    //     console.log(writeFileResponse);
+    //     return copyFile();
+    // })
+    // .then(copyFileResponse => {
+    //     console.log(copyFileResponse);
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    // });
+}
+
+promptManager()
