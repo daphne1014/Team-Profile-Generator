@@ -1,70 +1,80 @@
 const generateTeam = team => {
-    var a = '';
-    
-    team.forEach(employee => {
-        switch (employee.getRole()) {
-            case 'Manager':
-                a = `<div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100" id="manager" style="width: 18rem;">
-                    <div class="card-body title">
-                        <h2 class="card-title name">${employee.getName()}</h2>
-                        <h3 class="card-title position"><i class="fas fa-mug-hot"> </i>${employee.getRole()}</h3>
-                    </div>
-                    <div class="card-body content">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${employee.getId()}</li>
-                        <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">${employee.getEmail}</a>
-                        </li>
-                        <li class="list-group-item">Office Number: ${employee.getOfficeNumber()}</li>
-                    </ul>
-                    </div>
-                </div>
-            </div>`;
-                break;
+    const template = [];
 
-            case 'Engineer':
-                a = `<div class="col">
-                <div class="card h-100" id="engineer" style="width: 18rem;">
-                    <div class="card-body title">
-                        <h2 class="card-title name">${employee.getName()}</h2>
-                        <h3 class="card-title position"><i class="fas fa-glasses"> </i>${employee.getRole()}</h3>
-                    </div>
-                    <div class="card-body content">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${employee.getId()}</li>
-                        <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">
-                                ${employee.getEmail}</a>
-                        </li>
-                        <li class="list-group-item">Github: ${employee.getGithub()}</li>
-                    </ul>
-                    </div>
+    const generateManager = manager => {
+        return `<div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100" id="manager" style="width: 18rem;">
+                <div class="card-body title">
+                    <h2 class="card-title name">${manager.getName()}</h2>
+                    <h3 class="card-title position"><i class="fas fa-mug-hot"> </i>${manager.getRole()}</h3>
                 </div>
-            </div>`;
-                break;
-
-            case 'Intern':
-                a = `<div class="col">
-                <div class="card h-100" id="intern" style="width: 18rem;">
-                    <div class="card-body title">
-                        <h2 class="card-title name">${employee.getName()}</h2>
-                        <h3 class="card-title position"><i class="fas fa-user-graduate"> </i>${employee.getRole()}</h3>
-                    </div>
-                    <div class="card-body content">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: ${employee.getId()}</li>
-                        <li class="list-group-item">Email: <href="mailto:${employee.getEmail()}">${employee.getEmail}</a>
-                        </li>
-                        <li class="list-group-item">School: ${employee.getSchool()}</li>
-                    </ul>
-                    </div>
+                <div class="card-body content">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${manager.getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a>
+                    </li>
+                    <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
+                </ul>
                 </div>
-            </div>`;
-                break;
-        }
-    })
+            </div>
+        </div>`
+    };
+    const generateEngineer = engineer => {
+        return `<div class="col">
+        <div class="card h-100" id="engineer" style="width: 18rem;">
+            <div class="card-body title">
+                <h2 class="card-title name">${engineer.getName()}</h2>
+                <h3 class="card-title position"><i class="fas fa-glasses"> </i>${engineer.getRole()}</h3>
+            </div>
+            <div class="card-body content">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${engineer.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">
+                        ${engineer.getEmail()}</a>
+                </li>
+                <li class="list-group-item">Github: ${engineer.getGithub()}</li>
+            </ul>
+            </div>
+        </div>
+    </div>`
+    }
+    const generateIntern = intern => {
+        return `<div class="col">
+        <div class="card h-100" id="intern" style="width: 18rem;">
+            <div class="card-body title">
+                <h2 class="card-title name">${intern.getName()}</h2>
+                <h3 class="card-title position"><i class="fas fa-user-graduate"> </i>${intern.getRole()}</h3>
+            </div>
+            <div class="card-body content">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${intern.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a>
+                </li>
+                <li class="list-group-item">School: ${intern.getSchool()}</li>
+            </ul>
+            </div>
+        </div>
+    </div>`
+    }
 
-    return a;
+    template.push(team
+        .filter(employee => employee.getRole() === "Manager")
+        .map(manager => generateManager(manager))
+    );
+    template.push(team
+        .filter(employee => employee.getRole() === "Engineer")
+        .map(engineer => generateEngineer(engineer))
+        .join("")
+    )
+    template.push(team
+        .filter(employee => employee.getRole() === "Intern")
+        .map(intern => generateIntern(intern))
+        .join("")
+    )
+
+
+    return template.join("");
 };
 
 
@@ -96,5 +106,5 @@ function generateHtml(team) {
     `;
 };
 
-module.exports=generateHtml;
+module.exports = generateHtml;
 

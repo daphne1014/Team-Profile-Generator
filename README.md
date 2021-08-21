@@ -16,7 +16,7 @@ SO THAT I have quick access to their emails and GitHub profiles
 * JEST
 
 ## Screenshot
-![walkthrough video](./Develop/assets/READMEpreview.gif?raw=true "A walkthrough video demonstrating the functionality of the application")
+![walkthrough video](./assets/READMEpreview.gif?raw=true "A walkthrough video demonstrating the functionality of the application")
 
 ## Contribution
 Made with ❤️ by Daphne
